@@ -1,0 +1,18 @@
+templates:
+-main
+	a)header/menu =[sign_in,sign_up,upload(if auth),..]
+	b)body/list of tracks(like blog articles) + author name(profile-page link)
+-sign_up
+-sign_in
+-upload
+-profile-page with related files
+
+
+
+    def validate(self, password, user=None):
+        if len(password) < self.min_length:
+            pass_d={"pass":"wrong"}
+            return pass_d
+        else:
+            pass_d = {"pass": password}
+            return pass_d

@@ -1,0 +1,62 @@
+{% load staticfiles %}
+<html lang="ru">
+    <head>
+<link rel="stylesheet" type="text/css" href="{% static 'myblog/bootstrap/css/bootstrap.css' %}" />
+    <!--link rel="stylesheet" type="text/css" href="{% static 'myblog/style.css' %}" /-->
+        <meta charset="utf-8" />
+        <title>MyBlog</title>
+
+<link rel="stylesheet" type="text/css" href="{% static 'myblog/style.css' %}" />
+
+        <style>
+            body {
+                padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+            }
+		a:hover{
+		 text-decoration: none;
+		}
+
+        </style>
+        <link href="{{STATIC_URL}}bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+        <script src="{{STATIC_URL}}bootstrap/js/bootstrap.js" type="text/javascript"></script>
+        {% block extrahead %}
+        {% endblock %}
+        <script type="text/javascript">
+        $(function(){
+        {% block jquery %}
+        {% endblock %}
+        });
+        </script>
+    </head>
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <div class="brand"><a href="{% url 'list' %}">My Blog</a></div>
+            <ul class="nav navbar-right">
+                <li><a href="{% url 'list' %}" class="">Wall</a></li>
+           	<li><a href="{% url 'show_cart' %}" class="">Products</a></li>
+            {% if user.is_anonymous %}
+            </ul>
+            <div class=" nav-left">
+            <ul class="nav">
+		<li><a href="{% url 'annr:sign_in' %}" class="">Sign In</a></li>
+        <li><a href="{% url 'annr:sign_up' %}" class="">Sign Up</a></li>
+            {% else %}
+            <li><a href="{% url 'annr:sign_out' %}" class="">Log Out</a></li>
+            {% endif %}
+            </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="container">
+     {% block content %}Empty page{% endblock %}
+</div> <!-- container -->
+
+</body>
+</html>
